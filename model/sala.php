@@ -38,9 +38,54 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-9 bg-light d-flex align-items-center" style="height: 100vh;">
-                <div class="body text-center">
-                    <h3>Antes de continuar inicie la conexion con la DB</h3>
+            <div class="col-md-9 bg-light d-flex" style="height: 100vh;">
+                <div class="body text-center container-fluid row justify-content-center align-items-center">
+                    <div class="col-12">
+                        <h3>Equipos:</h3>
+                        <ul>
+                            <li>Equipo 1</li>
+                            <li>Equipo 2</li>
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroModal">
+                            Registrar Equipo
+                        </button>
+                    </div>
+                    <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Registrar Equipo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <label for="codigo" class="form-label">Codigo del Equipo</label>
+                                        <input type="text" class="form-control mb-3" id="codigo" name="codigo">
+                                        <label for="tipo">Tipo de Equipo:</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
+                                            <option>PC</option>
+                                            <option>Portátil</option>
+                                        </select>
+                                        <label for="codigo" class="form-label">Marca del Equipo</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
+                                            <option>PC</option>
+                                            <option>Portátil</option>
+                                        </select>
+                                        <label for="codigo" class="form-label">Sala de Ingreso del Equipo</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
+                                            <option>PC</option>
+                                            <option>Portátil</option>
+                                        </select>
+                                        <label for="fecha" class="form-label">Fecha de Ingreso del Equipo:</label>
+                                        <input type="date" class="form-control mb-3" id="fecha" name="fecha" value="<?php echo $fecha_actual; ?>">
+                                        <button type="submit" class="btn btn-primary">Registrar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

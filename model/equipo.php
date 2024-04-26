@@ -64,25 +64,29 @@ $fecha_actual = date("Y-m-d");
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="mb-3">
-                                            <label for="codigo" class="form-label">Codigo del Equipo</label>
-                                            <input type="text" class="form-control" id="codigo" name="codigo">
-                                        </div>
-                                        <label for="tipo">Tipo:</label>
-                                        <select class="form-control" id="tipo" name="tipo">
+                                        <label for="codigo" class="form-label">Codigo del Equipo</label>
+                                        <input type="text" class="form-control mb-3" id="codigo" name="codigo">
+                                        <label for="tipo">Tipo de Equipo:</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
                                             <option>PC</option>
                                             <option>Portátil</option>
                                         </select>
-                                        <select class="form-control" id="tipo" name="tipo">
+                                        <label for="codigo" class="form-label">Marca del Equipo</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
                                             <option>PC</option>
                                             <option>Portátil</option>
                                         </select>
-                                        <select class="form-control" id="tipo" name="tipo">
+                                        <label for="codigo" class="form-label">Sala de Ingreso del Equipo</label>
+                                        <select class="form-control mb-3" id="tipo" name="tipo">
                                             <option>PC</option>
                                             <option>Portátil</option>
                                         </select>
-                                        <label for="fecha" class="form-label">Selecciona una fecha:</label>
-                                        <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo $fecha_actual; ?>">
+                                        <label for="fecha" class="form-label">Fecha de Ingreso del Equipo:</label>
+                                        <input type="date" class="form-control mb-3" id="fecha" name="fecha" value="<?php echo $fecha_actual; ?>">
+                                        <label for="fecha" class="form-label">Estado del Equipo: </label>
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault" id="switchLabel"> En Mantenimiento</label>
+                                        <hr class="border-bottom"></hr>
                                         <button type="submit" class="btn btn-primary">Registrar</button>
                                     </form>
                                 </div>
@@ -94,12 +98,17 @@ $fecha_actual = date("Y-m-d");
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-`   
     <script>
-        // Función para mostrar el formulario cuando se hace clic en el enlace "Registrar Equipo"
-        document.getElementById('showForm').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('equipoForm').style.display = 'block';
+        var switchElement = document.getElementById('flexSwitchCheckDefault');
+        
+        var labelElement = document.getElementById('switchLabel');
+        
+        switchElement.addEventListener('change', function() {
+            if (this.checked) {
+                labelElement.textContent = 'En Funcionamiento';
+            } else {
+                labelElement.textContent = 'En Mantenimiento';
+            }
         });
     </script>
 </body>
