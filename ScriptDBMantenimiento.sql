@@ -124,8 +124,9 @@ INSERT INTO `marcas` (`id`, `nombremarca`) VALUES
 (4, 'asus'),
 (5, 'acer');
 
-select nombremarca from marcas;
+select * from marcas;
 show grants;
+SHOW GRANTS FOR 'root'@'localhost';
 --
 -- Volcado de datos para la tabla `salas`
 --

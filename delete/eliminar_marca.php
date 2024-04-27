@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo '<script>
                 setTimeout(function() {
-                    alert("Error al eliminar");
+                    alert("Error al eliminar la sede");
                     window.location.href = "../model/marca.php";
                 }, 100);
                 </script>';

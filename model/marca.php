@@ -114,7 +114,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 </div>
                                 <div class="modal-body">
                                     <form method="POST" action="../updates/actualizar_marca.php">
-                                        <label for="codigo" class="form-label">Nombre de la Marca</label>
+                                        <label for="codigo_actualizar" class="form-label">Nombre de la Marca</label>
                                         <input for="id_marca_actualizar" style="display: none;" id="id_actualizar" name="idmarca"></input>
                                         <input type="text" class="form-control mb-3" id="codigo_actualizar" name="nombremarca">
                                         <button type="submit" class="btn btn-primary" value="ok" name="btnregistrarmarca">Actualizar</button>   
