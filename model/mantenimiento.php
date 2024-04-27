@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/875b3ce1f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container-fluid row">
@@ -39,13 +40,36 @@
         </section>
         <section class="col-md-9 bg-light d-flex" style="height: 100vh;">
             <div class="body text-center container-fluid row justify-content-center align-items-center">
-                <div class="col-12">
-                    <h3>Mantenimiento:</h3>
-                    <ul>
-                        <li>Equipo 1</li>
-                        <li>Equipo 2</li>
-                    </ul>
-                </div>
+                <div class="col-12 p-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="bg-primary" scope="col">NOMBRE EQUIPO</th>
+                                    <th class="bg-primary" scope="col">TIPO DE MANTENIMIENTO</th>
+                                    <th class="bg-primary" scope="col">MONITOR</th>
+                                    <th class="bg-primary" scope="col">PROBLEMA</th>
+                                    <th class="bg-primary" scope="col">DESCRIPCION</th>
+                                    <th class="bg-primary" scope="col">FECHA INICIO</th>
+                                    <th class="bg-primary" scope="col">FECHA FIN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>532423</td> 
+                                    <td>Preventivo</td>
+                                    <td>Jaime</td>
+                                    <td>Polvo</td>
+                                    <td>Ventiladores Sucios</td>
+                                    <td>15/01/2022</td>
+                                    <td>15/01/2022</td>
+                                    <td>
+                                        <a class="btn btn-small btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>    
+                        </table>
+                    </div>
                 <div class="col-4">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroModal">
                         Registrar Mantenimiento
@@ -60,25 +84,27 @@
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <label for="codigo" class="form-label">Codigo del Equipo</label>
-                                    <input type="text" class="form-control mb-3" id="codigo" name="codigo">
-                                    <label for="tipo">Tipo de Equipo:</label>
+                                    <label for="tipo">Equipo para Mantenimiento</label>
                                     <select class="form-control mb-3" id="tipo" name="tipo">
                                         <option>PC</option>
                                         <option>Portátil</option>
                                     </select>
-                                    <label for="codigo" class="form-label">Marca del Equipo</label>
+                                    <label for="codigo" class="form-label">Tipo de Mantenimiento</label>
                                     <select class="form-control mb-3" id="tipo" name="tipo">
-                                        <option>PC</option>
-                                        <option>Portátil</option>
+                                        <option>Preventivo</option>
+                                        <option>Correctivo</option>
                                     </select>
-                                    <label for="codigo" class="form-label">Sala de Ingreso del Equipo</label>
-                                    <select class="form-control mb-3" id="tipo" name="tipo">
-                                        <option>PC</option>
-                                        <option>Portátil</option>
-                                    </select>
-                                    <label for="fecha" class="form-label">Fecha de Ingreso del Equipo:</label>
+                                    <label for="fecha" class="form-label">Fecha Inicio de Mantenimiento del Equipo</label>
                                     <input type="date" class="form-control mb-3" id="fecha" name="fecha" value="<?php echo $fecha_actual; ?>">
+                                    <label for="codigo" class="form-label">Problema del Equipo</label>
+                                        <input type="text" class="form-control mb-3" id="codigo" name="codigo">
+                                    <label for="exampleTextarea" class="form-label">Descripcion del Problema</label>
+                                    <textarea class="form-control mb-3" id="exampleTextarea" rows="3"></textarea>                                    
+                                    <label for="codigo" class="form-label">Nombre de Monitor</label>
+                                    <select class="form-control mb-3" id="tipo" name="tipo">
+                                        <option>PC</option>
+                                        <option>Portátil</option>
+                                    </select>
                                     <button type="submit" class="btn btn-primary">Registrar</button>
                                 </form>
                             </div>
