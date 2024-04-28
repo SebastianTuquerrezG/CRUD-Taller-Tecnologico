@@ -59,7 +59,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
             <div class="col-md-9 bg-light d-flex" style="height: 100vh;">
                 <div class="body text-center container-fluid row justify-content-center align-items-center">
-                    <div class="col-12 p-4">
+                    <div class="col-12 p-4 table-container">
                         <table class="table">
                             <thead class="thead-fixed">
                                 <tr>

@@ -124,7 +124,7 @@ INSERT INTO `marcas` (`id`, `nombremarca`) VALUES
 (4, 'asus'),
 (5, 'acer');
 
-select * from marcas;
+select * from salas;
 show grants;
 SHOW GRANTS FOR 'root'@'localhost';
 --
