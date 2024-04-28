@@ -89,6 +89,9 @@ CREATE TABLE `equipos` (
   `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('PC', 1, 'DESKTOP 23414', 1, "2024-04-20", 1);
+insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('Portátil', 3, 'DESKTOP 234', 4, "2024-03-20", 0);
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +108,29 @@ CREATE TABLE `mantenimientos` (
   `fechafin` date DEFAULT NULL,
   `descripcion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SELECT
+    equipos.id AS equipo_id,
+    equipos.codigo AS codigo_equipo,
+    equipos.tipo AS tipo_equipo,
+    marcas.nombremarca AS marca_equipo,
+    salas.nombresala AS sala_equipo,
+    equipos.fechaingreso AS fecha_ingreso_equipo,
+    mantenimientos.fechainicio AS fecha_ultimo_mantenimiento,
+    equipos.estado AS estado_equipo
+FROM
+    equipos
+INNER JOIN
+    marcas ON equipos.idmarca = marcas.id
+INNER JOIN
+    salas ON equipos.idsala = salas.id
+INNER JOIN
+    sedes ON salas.idsede = sedes.id
+LEFT JOIN
+    mantenimientos ON equipos.id = mantenimientos.idequipo
+ORDER BY
+    equipos.id;
+
 
 -- --------------------------------------------------------
 
@@ -124,7 +150,7 @@ INSERT INTO `marcas` (`id`, `nombremarca`) VALUES
 (4, 'asus'),
 (5, 'acer');
 
-select * from salas;
+select * from salas;monitores
 show grants;
 SHOW GRANTS FOR 'root'@'localhost';
 --
