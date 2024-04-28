@@ -10,20 +10,20 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Salas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/875b3ce1f0.js" crossorigin="anonymous"></script>
     <style>
         .table-container {
-            max-height: 70vh; /* Altura máxima */
-            overflow-y: auto; /* Scroll vertical si es necesario */
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .thead-fixed th {
             position: sticky;
             top: 0;
-            background-color: #f8f9fa; /* Color de fondo */
-            z-index: 1; /* Para asegurarse de que el thead esté por encima del contenido scrollable */
+            background-color: #f8f9fa; 
+            z-index: 1;
         }
     </style>
 </head>
