@@ -79,6 +79,8 @@ CREATE TABLE `salas` (
 -- Estructura de tabla para la tabla `equipos`
 --
 
+select * from mantenimientos;
+
 CREATE TABLE `equipos` (
   `id` int(11) NOT NULL,
   `tipo` varchar(100) NOT NULL,
@@ -88,10 +90,6 @@ CREATE TABLE `equipos` (
   `fechaingreso` date NOT NULL,
   `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('PC', 1, 'DESKTOP 23414', 1, "2024-04-20", 1);
-insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('Portátil', 3, 'DESKTOP 234', 4, "2024-03-20", 0);
-
 -- --------------------------------------------------------
 
 --
@@ -109,14 +107,20 @@ CREATE TABLE `mantenimientos` (
   `descripcion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-SELECT
-    equipos.id AS equipo_id,
-    equipos.codigo AS codigo_equipo,
+insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('PC', 1, 'DESKTOP 23414', 1, "2024-04-20", 1);
+insert into equipos (tipo, idmarca, codigo, idsala, fechaingreso, estado) values ('Portátil', 3, 'DESKTOP 234', 4, "2024-03-20", 0);
+
+SELECT * FROM MANTENIMIENTOS;
+
+SELECT 
+    equipos.id AS equipo_id, 
+    equipos.codigo AS codigo_equipo,    
     equipos.tipo AS tipo_equipo,
     marcas.nombremarca AS marca_equipo,
     salas.nombresala AS sala_equipo,
     equipos.fechaingreso AS fecha_ingreso_equipo,
-    mantenimientos.fechainicio AS fecha_ultimo_mantenimiento,
+    MAX(mantenimientos.fechafin) AS fecha_ultimo_mantenimiento,
+    DATE_ADD(MAX(mantenimientos.fechafin), INTERVAL 6 MONTH) AS fecha_siguiente_mantenimiento,
     equipos.estado AS estado_equipo
 FROM
     equipos
@@ -128,12 +132,53 @@ INNER JOIN
     sedes ON salas.idsede = sedes.id
 LEFT JOIN
     mantenimientos ON equipos.id = mantenimientos.idequipo
+GROUP BY
+    equipos.id, equipos.codigo, equipos.tipo, marcas.nombremarca, salas.nombresala, equipos.fechaingreso, equipos.estado
 ORDER BY
     equipos.id;
 
+SELECT
+	equipos.id AS ID_EQUIPO,
+	equipos.codigo AS NOMBRE_EQUIPO,
+	mantenimientos.tipomantenimiento AS TIPO_DE_MANTENIMIENTO,
+	monitores.nombremonitor AS MONITOR,
+	mantenimientos.problema AS PROBLEMA,
+	mantenimientos.descripcion AS DESCRIPCION,
+	mantenimientos.fechainicio AS FECHA_INICIO,
+	mantenimientos.fechafin AS FECHA_FIN
+FROM
+	mantenimientos
+INNER JOIN
+	equipos ON mantenimientos.idequipo = equipos.id
+INNER JOIN
+	monitores ON mantenimientos.idmonitor = monitores.id;
+    
+    SELECT
+	equipos.id AS ID_EQUIPO,
+	equipos.codigo AS NOMBRE_EQUIPO,
+    mantenimientos.id AS ID_MANTENIMIENTO,
+	mantenimientos.tipomantenimiento AS TIPO_DE_MANTENIMIENTO,
+	monitores.nombremonitor AS MONITOR,
+	mantenimientos.problema AS PROBLEMA,
+	mantenimientos.descripcion AS DESCRIPCION,
+	IF(mantenimientos.fechainicio = '0000-00-00', '', mantenimientos.fechainicio) AS FECHA_INICIO,
+	IF(mantenimientos.fechafin = '0000-00-00', '', mantenimientos.fechafin) AS FECHA_FIN
+FROM
+	mantenimientos
+INNER JOIN
+	equipos ON mantenimientos.idequipo = equipos.id
+INNER JOIN
+	monitores ON mantenimientos.idmonitor = monitores.id;
+
+INSERT INTO MANTENIMIENTOS (idequipo, tipomantenimiento, problema, fechainicio, idmonitor, fechafin, descripcion) VALUES (4, 0, 'Polvo', '2024-04-28', 2, '', 'ventiladores sucios');
+
+INSERT INTO MANTENIMIENTOS (idequipo, tipomantenimiento, problema, fechainicio, idmonitor, fechafin, descripcion) VALUES (5, 1, 'Suciedad', '2024-04-02', 2, '2024-04-03', '');
+	
+INSERT INTO MANTENIMIENTOS (idequipo, tipomantenimiento, problema, fechainicio, idmonitor, descripcion) VALUES (4, 0, 'Polvo', '2024-04-28', 2, 'ventiladores sucios');
 
 -- --------------------------------------------------------
-
+select * from equipos;
+select * from monitores;
 --
 -- Poblamiento de las Tablas
 --
@@ -150,7 +195,7 @@ INSERT INTO `marcas` (`id`, `nombremarca`) VALUES
 (4, 'asus'),
 (5, 'acer');
 
-select * from salas;monitores
+select * from salas;
 show grants;
 SHOW GRANTS FOR 'root'@'localhost';
 --

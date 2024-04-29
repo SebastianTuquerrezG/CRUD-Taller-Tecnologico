@@ -84,7 +84,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     marcas.nombremarca AS marca_equipo,
                                     salas.nombresala AS sala_equipo,
                                     equipos.fechaingreso AS fecha_ingreso_equipo,
-                                    MAX(mantenimientos.fechafin) AS fecha_ultimo_mantenimiento,
+                                    IF(MAX(mantenimientos.fechafin) = '0000-00-00', '', MAX(mantenimientos.fechafin)) AS fecha_ultimo_mantenimiento,
                                     DATE_ADD(MAX(mantenimientos.fechafin), INTERVAL 6 MONTH) AS fecha_siguiente_mantenimiento,
                                     equipos.estado AS estado_equipo
                                 FROM
